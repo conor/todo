@@ -1,34 +1,53 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+
+interface Task {
+  id: number
+  title: string
+  done: boolean
+}
+
+const initialTasks: Task[] = [
+  {
+    id: 1,
+    title: 'Send invites for party',
+    done: true,
+  },
+  {
+    id: 2,
+    title: 'Buy groceries',
+    done: false,
+  },
+]
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [tasks, setTasks] = useState<Task[]>(initialTasks)
+
+  function handleToggle(id: number) {
+    setTasks((oldTasks) =>
+      oldTasks.map((task) => (task.id === id ? { ...task, done: !task.done } : task)),
+    )
+  }
+
+  // Write a function to remove a task
+  // Add a form, input field, and a submit button to create new tasks
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div className="bg-stone-50 flex flex-col items-center justify-center h-screen">
+      <div className="bg-white rounded-lg shadow-lg p-5 min-w-1/3">
+        <h1 className="text-3xl font-bold text-stone-700">Todo list</h1>
+        <ul className="text-stone-500 pt-4">
+          {tasks.map((task) => (
+            <li key={task.id} className="flex items-center justify-between space-x-4 my-2">
+              <div className="flex items-center space-x-4">
+                <input onClick={() => handleToggle(task.id)} type="checkbox" checked={task.done} />
+                <p className={task.done ? 'line-through' : ''}>{task.title}</p>
+              </div>
+              <button className="text-red-500">Remove</button>
+            </li>
+          ))}
+        </ul>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    </div>
   )
 }
 
