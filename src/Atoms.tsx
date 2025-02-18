@@ -1,4 +1,5 @@
-import { atom } from "jotai";
+
+import { atomWithStorage } from 'jotai/utils'
 
 export interface Task {
   id: number;
@@ -19,5 +20,5 @@ const initialTasks: Task[] = [
   },
 ];
 
-export const NewTask = atom("");
-export const Task = atom<Task[]>(initialTasks);
+export const NewTask = atomWithStorage("new_one","");
+export const Task = atomWithStorage<Task[]>("task",initialTasks);
