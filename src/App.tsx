@@ -1,27 +1,10 @@
-import { useState } from 'react'
+import { useAtom } from 'jotai'
+import {NewTask,Task} from "./Atoms"
 
-interface Task {
-  id: number
-  title: string
-  done: boolean
-}
-
-const initialTasks: Task[] = [
-  {
-    id: 1,
-    title: 'Send invites for party',
-    done: true,
-  },
-  {
-    id: 2,
-    title: 'Buy groceries',
-    done: false,
-  },
-]
 
 function App() {
-  const [tasks, setTasks] = useState<Task[]>(initialTasks)
-  const[newtask,setNewTask]= useState("")
+  const [tasks, setTasks] = useAtom(Task)
+  const[newtask,setNewTask]= useAtom(NewTask)
 
   function handleToggle(id: number) {
     setTasks((oldTasks) =>
@@ -30,7 +13,7 @@ function App() {
   }
   function handleChange() {
     const newTaskObj: Task = {
-      id: tasks.length + 1, // Simple unique ID generation
+      id: tasks.length + 1, 
       title: newtask,
       done: false,
     };
@@ -45,10 +28,7 @@ function App() {
   
   
  
-  
 
-  // Write a function to remove a task
-  // Add a form, input field, and a submit button to create new tasks
 
   return (
     <div className="bg-stone-50 flex flex-col items-center justify-center h-screen">
