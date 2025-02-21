@@ -1,4 +1,4 @@
-import useTasks from '../hooks/use-tasks'
+import useTasks from '@/hooks/use-tasks'
 
 export default function TaskForm() {
   const { newtask, handleChange, handleSubmit } = useTasks()
