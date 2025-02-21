@@ -1,5 +1,5 @@
-import useTasks from '../hooks/use-tasks'
-import { type Task } from '../stores'
+import useTasks from '@/hooks/use-tasks'
+import { type Task } from '@/stores'
 
 interface TaskListItemProps {
   task: Task

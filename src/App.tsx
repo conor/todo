@@ -1,7 +1,7 @@
-import TaskForm from './components/task-form'
-import TaskList from './components/task-list'
-import TaskListItem from './components/task-list-item'
-import useTasks from './hooks/use-tasks'
+import TaskForm from '@/components/task-form'
+import TaskList from '@/components/task-list'
+import TaskListItem from '@/components/task-list-item'
+import useTasks from '@/hooks/use-tasks'
 
 function App() {
   const { tasks } = useTasks()
