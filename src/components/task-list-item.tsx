@@ -14,7 +14,7 @@ export default function TaskListItem({ task }: TaskListItemProps) {
     >
       <div className="flex items-center space-x-4">
         <input
-          onClick={() => handleToggle(task.id)}
+          onChange={() => handleToggle(task.id)}
           type="checkbox"
           checked={task.done}
         />
