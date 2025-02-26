@@ -9,7 +9,7 @@ function App() {
   return (
     <div className="bg-stone-50 flex flex-col items-center justify-center h-screen">
       <div className="bg-white rounded-lg shadow-lg p-5 min-w-1/3">
-        <h1 className="text-3xl font-bold text-stone-700">Todo list</h1>
+        <h1 className="text-3xl font-bold text-stone-700">To do list</h1>
         <TaskForm />
         {/* NewTask component */}
         <TaskList>
