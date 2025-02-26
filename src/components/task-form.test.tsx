@@ -1,17 +1,19 @@
-import { render, screen } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
+import { fireEvent, render, screen } from "@testing-library/react";
 import { describe, it, expect } from "vitest";
 import TaskForm from "./task-form";
-import "@testing-library/jest-dom";
+import '@testing-library/jest-dom';
 
-describe("TaskForm", () => {
-  it("check if error message is thrown if no task is entered", async () => {
+describe("task-form", () => {
+  it("add to do button works", () => {
     render(<TaskForm />);
-  
+
+    const inputElement = screen.getByPlaceholderText('Add an item');
     const addTaskButton = screen.getByText("Add Task");
 
-    await userEvent.click(addTaskButton);
+    fireEvent.change(inputElement, { target: { value: 'Do the washing!' } });
+    fireEvent.click(addTaskButton);
 
-    expect(await screen.findByText("String must contain at least 1 character(s)")).toBeInTheDocument();
+    // const taskListItem = screen.getByText('Do the washing!');
+    expect(screen.getByText('Do the washing!')).toBeInTheDocument();
   });
 });
